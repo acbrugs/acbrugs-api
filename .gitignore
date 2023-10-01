@@ -1,0 +1,13 @@
+# Node Modules and Debug Log
+node_modules/
+npm-debug.log
+
+# Environment Variables
+.env
+
+# Build Directory
+.next/
+
+# IDE-specific
+.vscode/
+.idea/
