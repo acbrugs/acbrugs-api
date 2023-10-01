@@ -51,7 +51,7 @@ exports.deleteRugType = async (req, res) => {
     if (!rugType) {
       return res.status(404).json({ error: 'RugType not found' });
     }
-    res.status(204).json(null);
+    res.status(204).json({ message: 'RugType deleted successfully' });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

@@ -1,11 +1,15 @@
-// models/User.js
-
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const UserSchema = new mongoose.Schema({
-  username: String,
-  email: String,
+  username: {
+    type: String,
+    unique: true  // Enforce uniqueness
+  },
+  email: {
+    type: String,
+    unique: true  // Enforce uniqueness
+  },
   password: String,
   role: {
     type: String,

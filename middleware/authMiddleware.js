@@ -11,7 +11,9 @@ exports.protect = (req, res, next) => {
   }
 
   try {
-    req.user = verifyToken(token);
+    const decoded = verifyToken(token);
+    console.log('Decoded Token: ', decoded);
+    req.user = decoded;
     next();
   } catch (err) {
     console.error(`Token verification failed: ${err.message}`);
@@ -20,11 +22,18 @@ exports.protect = (req, res, next) => {
 };
 
 exports.restrictToAdmin = (req, res, next) => {
-  if (req.user && req.user.role === 'admin') {
+  console.log('req.user:', req.user); // Debug output
+
+  if (!req.user) {
+    console.error('Unauthorized: req.user is undefined');
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+
+  if ('role' in req.user && req.user.role === 'admin') {
     next();
   } else {
     console.error(
-      `Forbidden: ${req.user.role} trying to access admin-only route`
+      `Forbidden: Role is either missing or not admin. Current role: ${req.user.role}`
     );
     return res.status(403).json({ message: 'Forbidden' });
   }

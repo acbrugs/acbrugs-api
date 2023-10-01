@@ -13,24 +13,40 @@ exports.register = async (req, res) => {
     password,
   });
 
-  await newUser.save();
+  try {
+    await newUser.save();
 
-  const token = generateToken({id:newUser._id,role:newUser.role});
+    const token = generateToken({ id: newUser._id, role: newUser.role });
 
-  // On successful authentication, set HttpOnly cookie
-  res.cookie('token', token, {
-    httpOnly: true,
-    secure: false, // Set to true if using HTTPS
-    sameSite: 'strict',
-    maxAge: 86400000, // 1 day
-  });
+    // On successful authentication, set HttpOnly cookie
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: false, // Set to true if using HTTPS
+      sameSite: 'strict',
+      maxAge: 86400000, // 1 day
+    });
 
-  res.status(201).json({
-    status: 'success',
-    data: {
-      user: newUser,
-    },
-  });
+    res.status(201).json({
+      status: 'success',
+      data: {
+        user: newUser,
+      },
+    });
+  } catch (err) {
+    if (err.code === 11000) {
+      return res.status(400).json({
+        status: 'fail',
+        message:
+          'Duplicate field value entered. Username or email already in use.',
+      });
+    }
+
+    // Handle other types of errors
+    res.status(500).json({
+      status: 'error',
+      message: err.message,
+    });
+  }
 };
 
 exports.login = async (req, res) => {
@@ -42,7 +58,7 @@ exports.login = async (req, res) => {
     return res.status(400).json({ message: 'Invalid credentials' });
   }
 
-  const token = generateToken(user._id);
+  const token = generateToken({ id: user._id, role: user.role });
 
   // On successful authentication, set HttpOnly cookie
   res.cookie('token', token, {
