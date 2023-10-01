@@ -11,3 +11,5 @@ npm-debug.log
 # IDE-specific
 .vscode/
 .idea/
+logs/combined.log
+logs/error.log

@@ -8,7 +8,7 @@ router
   .route('/api/v1/rugs')
   .get(rugController.getAllRugs)
   .post(protect, restrictToAdmin, rugController.createRug);
-
+router.route('/api/v1/rugs/type/:rugTypeId').get(rugController.getAllRugsByType);
 router
   .route('/api/v1/rugs/:id')
   .get(rugController.getRugById)

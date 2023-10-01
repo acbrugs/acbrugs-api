@@ -19,6 +19,18 @@ const rugTypeSchema = new mongoose.Schema(
   }
 );
 
+rugTypeSchema.pre('save', function(next) {
+  this.slug = generateSlug(this.name);
+  next();
+});
+
+function generateSlug(name) {
+  return name
+    .toLowerCase()
+    .replace(/[^\w ]+/g, '')
+    .replace(/ +/g, '-');
+}
+
 const RugType = mongoose.model('RugType', rugTypeSchema);
 
 module.exports = RugType;
