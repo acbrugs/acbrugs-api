@@ -72,7 +72,7 @@ exports.login = async (req, res) => {
     res.cookie('token', token, {
       httpOnly: true,
       secure: true, // Set to true if using HTTPS
-      sameSite: 'None; Secure', 
+      sameSite: 'none', 
       maxAge: 86400000, // 1 day
     });
     logger.info(`User with ID ${user._id} logged in successfully`);
