@@ -17,6 +17,13 @@ const rugSchema = new mongoose.Schema({
 }, {
   timestamps: true,
 });
+rugSchema.virtual('id').get(function() {
+  return this._id.toHexString();
+});
+
+rugSchema.set('toJSON', {
+  virtuals: true,
+});
 
 const Rug = mongoose.model('Rug', rugSchema);
 

@@ -31,6 +31,14 @@ function generateSlug(name) {
     .replace(/ +/g, '-');
 }
 
+rugTypeSchema.virtual('id').get(function() {
+  return this._id.toHexString();
+});
+
+rugTypeSchema.set('toJSON', {
+  virtuals: true,
+});
+
 const RugType = mongoose.model('RugType', rugTypeSchema);
 
 module.exports = RugType;

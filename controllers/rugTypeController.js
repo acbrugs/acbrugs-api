@@ -5,12 +5,7 @@ const { deleteCloudinaryImage } = require('../utils/cloudinaryHelpers');
 exports.createRugType = async (req, res) => {
   try {
     const newRugType = await RugType.create(req.body);
-    res.status(201).json({
-      status: 'success',
-      data: {
-        rugType: newRugType,
-      },
-    });
+    res.status(201).json(newRugType);
     logger.info('Successfully created a new rug type');
   } catch (error) {
     res.status(500).json({
@@ -24,12 +19,7 @@ exports.createRugType = async (req, res) => {
 exports.getAllRugTypes = async (req, res) => {
   try {
     const rugTypes = await RugType.find();
-    res.status(200).json({
-      status: 'success',
-      data: {
-        rugTypes,
-      },
-    });
+    res.status(200).json(rugTypes);
     logger.info('Successfully fetched all rug types');
   } catch (error) {
     res.status(500).json({
@@ -98,7 +88,7 @@ exports.deleteRugType = async (req, res) => {
     await RugType.findByIdAndDelete(req.params.id);
     await deleteCloudinaryImage(rugType.imageUrl);
 
-    res.status(204).json({ message: 'RugType deleted successfully' });
+    res.status(200).json({ message: 'RugType deleted successfully' });
     logger.info(`Successfully deleted RugType with ID ${req.params.id}`);
   } catch (error) {
     res.status(400).json({ error: error.message });
