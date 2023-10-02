@@ -25,8 +25,8 @@ exports.register = async (req, res) => {
     // On successful authentication, set HttpOnly cookie
     res.cookie('token', token, {
       httpOnly: true,
-      secure: false, // Set to true if using HTTPS
-      sameSite: 'strict',
+      secure: true, // Set to true if using HTTPS
+      sameSite: 'None; Secure', 
       maxAge: 86400000, // 1 day
     });
     logger.info(`User registered successfully with ID: ${newUser._id}`);
@@ -71,8 +71,8 @@ exports.login = async (req, res) => {
     // On successful authentication, set HttpOnly cookie
     res.cookie('token', token, {
       httpOnly: true,
-      secure: false, // Set to true if using HTTPS
-      sameSite: 'strict',
+      secure: true, // Set to true if using HTTPS
+      sameSite: 'None; Secure', 
       maxAge: 86400000, // 1 day
     });
     logger.info(`User with ID ${user._id} logged in successfully`);
