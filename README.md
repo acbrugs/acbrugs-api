@@ -1,10 +1,19 @@
 # ACBrugs API Documentation
 
+## Introduction
+
 Welcome to the ACBrugs API, a RESTful service designed to manage a digital portfolio of rugs. This API allows for operations related to rug collections and user authentication, ensuring a dynamic and responsive web application.
+
+The API is currently hosted at [https://api.acbrugs.com](https://api.acbrugs.com) and is powered by Node.js with Express, using MongoDB for data persistence.
+
+## Base URL
+
+All API requests should be made to the base URL: https://api.acbrugs.com
 
 ## API Endpoints
 
 Below you will find a structured documentation of all the available API endpoints, their methods, required parameters, and access restrictions.
+
 
 ### Rugs
 
