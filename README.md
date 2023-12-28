@@ -10,6 +10,15 @@ The API is currently hosted at [https://api.acbrugs.com](https://api.acbrugs.com
 
 All API requests should be made to the base URL: https://api.acbrugs.com
 
+### Backend Highlights
+
+- **RESTful API**: Supports full CRUD operations for rugs and rug types.
+- **Data Modeling**: Node.js models define data structures and validate interactions.
+- **Security**: Middleware ensures authenticated access and protects endpoints.
+- **Image Management**: Cloudinary integration for high-quality image uploads and storage.
+- **Utilities**: Common functions, such as JWT authentication, are abstracted for cleaner code.
+
+
 ## API Endpoints
 
 Below you will find a structured documentation of all the available API endpoints, their methods, required parameters, and access restrictions.
@@ -115,4 +124,5 @@ We welcome contributions from the community. If you'd like to contribute, please
 The code in this project is licensed under MIT license. See the [LICENSE](LICENSE.md) file for more information.
 
 ---
-Enjoy your exploration of ACBrugs API, and we look forward to your contributions and feedback!
+
+Thank you for visiting the ACBrugs Portfolio Website repository. For any queries or support, reach out to the project maintainers.
