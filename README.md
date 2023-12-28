@@ -10,7 +10,7 @@ The API is currently hosted at [https://api.acbrugs.com](https://api.acbrugs.com
 
 All API requests should be made to the base URL: https://api.acbrugs.com
 
-### Backend Highlights
+## Backend Highlights
 
 - **RESTful API**: Supports full CRUD operations for rugs and rug types.
 - **Data Modeling**: Node.js models define data structures and validate interactions.
